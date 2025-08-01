@@ -9,13 +9,13 @@ Los pedidos pueden ser para comer en el lugar o para recoger, y los clientes pue
 Una Base de Datos no Relacional es una forma de almacenar datos de manera más flexible que las bases de datos relacionales.
 En las bases de datos no relacionales, no se tiene tanta rigidez. Los datos pueden estar estructurados de una forma más flexible. Pueden organizarse en:
 
-* Documentos: Los datos se almacenan como documentos (similares a los archivos JSON), donde cada documento puede tener diferentes propiedades.
+* **Documentos:** Los datos se almacenan como documentos (similares a los archivos JSON), donde cada documento puede tener diferentes propiedades.
 
-* Clave-valor: Almacenan datos como pares de "clave" y "valor", como si fuera una caja donde la clave es el nombre de la caja y el valor es lo que hay dentro.
+* **Clave-valor:** Almacenan datos como pares de "clave" y "valor", como si fuera una caja donde la clave es el nombre de la caja y el valor es lo que hay dentro.
 
-* Grafos: Los datos se almacenan en forma de grafos, donde los nodos están conectados entre sí por relaciones. Esto es útil para redes sociales o rutas de transporte.
+* **Grafos:** Los datos se almacenan en forma de grafos, donde los nodos están conectados entre sí por relaciones. Esto es útil para redes sociales o rutas de transporte.
 
-* Columnas: Los datos se almacenan en columnas, lo cual es útil cuando se tienen muchos datos pero no siempre con las mismas características.
+* **Columnas:** Los datos se almacenan en columnas, lo cual es útil cuando se tienen muchos datos pero no siempre con las mismas características.
 
 ### 🌿 ¿Qué es MongoDB?
 
@@ -39,12 +39,13 @@ La principal diferencia radica en su estructura, ademas encontramos diferencia e
 | **Rendimiento**     | Bueno con relaciones complejas   | Mejor con datos simples y grandes  |
 
 
+
 Base de datos relacionales son ideales para aplicaciones que necesitan integridad de datos, relaciones complejas entre entidades, y consultas SQL robustas.
 Base de datos no relacionales son mejores para aplicaciones con datos semi-estructurados o no estructurados, y cuando se requiere flexibilidad, escalabilidad horizontal, y alto rendimiento en lecturas.
 
 ### 📑 ¿Qué son documentos y colecciones en MongoDB?
 
-En mongoDB un documento es una representacion de un objeto de datos y esta basado en JSON, que mongo almacena en un formato binario llamado BSON. 
+En mongoDB un documento es una representación de un objeto de datos y esta basado en JSON, que mongo almacena en un formato binario llamado BSON. 
 Los documentosa son estructuras que almacenan sus datos en pares "clave-valor", donde las claves son strings y los valores pueden ser cualquier tipo de datos. Los documentos pueden tener estructuras flexibles y cada documento puede tener campos diferentes lo que permite manejar datos semi-estructurados o no estructurados. 
 
 LAs colecciones de3 datos en mongoDB son un conjunto de documentos que no tienen  esquema fijo ni restricciones de tipos de datos entre los documentos que contiene. Estads colecciones no tienen una estructura rigida como cada coleccion tiene un nombre y se puede tener multiples colecciones dentro de una base de datos. 
@@ -71,7 +72,13 @@ LAs colecciones de3 datos en mongoDB son un conjunto de documentos que no tienen
 
 Un pedido debe contener la información del cliente, los productos o combos pedidos, detalles de la modalidad (para llevar o comer en el lugar), estado del pedido, precios.
 
+<img width="665" height="475" alt="image" src="https://github.com/user-attachments/assets/a2cefdb8-6056-4cd7-a672-8bdc97d010ef" />
+
+
 Cada producto puede ser una pizza, bebida, postre, panzarotti, etc. Aquí también se incluyen los ingredientes y adiciones.
+
+<img width="535" height="288" alt="image" src="https://github.com/user-attachments/assets/f3e50efd-5eac-4be7-9985-558b7556dfe5" />
+
 
 ### 📥 ¿Qué iría dentro del documento y qué se referenciaría?
 
@@ -89,22 +96,48 @@ Referencias:
 
 
   ### ¿Qué campos serían listas, objetos u otros documentos incrustados?
+  
+* productos en un pedido → Lista de objetos.
 
+* ingredientes en un producto → Lista de objetos.
 
+* adiciones en un producto personalizado → Lista.
 
-## Reflexión
+### Ejemplos de documentos JSON
 
-## ¿Qué fue lo más difícil de imaginar sin tablas?
+- Un producto
 
-Lo más dificil fue imaginar como ibamos a organizar las colecciones y su contenido. También el relacionamiento que tendrian estas en el formato JSON. 
+  Ejemplo de producto "Panzeriti de quesitooo"
+  
+<img width="410" height="239" alt="image" src="https://github.com/user-attachments/assets/d28da198-049f-4fc1-8244-4a3c7059a17b" />
+  
+- Un combo
 
-## ¿Qué les gustó del enfoque con documentos?
+  Ejemplo de Combo Extraqueso
 
-La flexibilidad que nos permite este enfoque ya que podemos hacer un relacionamiento mas facil entre las colecciones
+<img width="426" height="246" alt="image" src="https://github.com/user-attachments/assets/04d8777a-b0dc-4128-9109-d64ab8e4735f" />
 
-## ¿Qué dudas les surgieron al pensar en este nuevo tipo de base de datos?
+  
+- Un pedido con un cliente y varios productos 
+  
+  Este es un ejemplo de pedido donde el cliente pide el combo grande "Combo Extraqueso", donde el cliente pide un adicional de Tocineta y Queso extra en su Panzeroti
+  
+<img width="658" height="885" alt="image" src="https://github.com/user-attachments/assets/b3da0f09-b7a2-45dd-8f6c-a18355d4b0ea" />
 
-Teniamos dudas de como estructurar la base de datos para nuestra pizzeria, debido a que no teniamos muy claro como organizar la información.
+  
+## 🙋‍♀️ Reflexión
+
+### 🧩 ¿Qué fue lo más difícil de imaginar sin tablas?
+
+Lo más dificil fue imaginar como organizariamos las colecciones y su contenido. También el relacionamiento que tendrian estas en el formato JSON, debido a que en las bases de datos relacionales es mas facil identificar estas relaciones gracias a las llaves. Estabamos acostumbradas al relacionamiento con JOINS. 
+
+### 🧩 ¿Qué les gustó del enfoque con documentos?
+
+La flexibilidad que nos permite este enfoque, es mas fácil la creacòn de documentos y hacer exansiones en el mismo, esto lo vimos al crear la coleccion para pedido ya que podiamos agregar diferentes atributos a su estructura.
+
+### 🧩 ¿Qué dudas les surgieron al pensar en este nuevo tipo de base de datos?
+
+Teniamos dudas de como estructurar la base de datos para nuestra pizzeria, debido a que no era muy claro para nosotras como organizar la información.
 
   ## 🤼‍♀️ AUTORES
 
